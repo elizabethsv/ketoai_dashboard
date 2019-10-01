@@ -16,12 +16,7 @@ const mapStyles={
 //need to integrate this into dashboard. 
 
 export const MapTest = (props) =>{
-    // let [markerInfo, setMarkerInfo] = useState({
-    //     showingInfoWindow: false,
-    //     activeMarker:{},             
-    // })
-
-
+   
     //use geocoding for the addresses to convert it to lat/long?
     let [locations, setLocations]=useState([
         {latitude:29.794940, longitude:-95.569930}, 
@@ -31,16 +26,21 @@ export const MapTest = (props) =>{
     ])
 
     let [animation, setAnimation] = useState(null)
+
+    let [customerInfo, setCustomerInfo] = useState(false)
     
 
 
 
-    //Need to present info on side div when marker clicked
+    //Need to add a close button to div 
     const onMarkerClick=(props,marker,e)=>{
         if(marker.animation !== null){
             marker.setAnimation(null)
+            setCustomerInfo(false)
+            
         }else{
             marker.setAnimation(1)
+            setCustomerInfo(true)
         }   
     }
 
@@ -64,19 +64,9 @@ export const MapTest = (props) =>{
             style={mapStyles}
             initialCenter={{lat: 29.794940, lng: -95.569930}}
             >
-            
-        
-            {/* {createMarkers()} */}
-
-            {/* <InfoWindow 
-                marker={markerInfo.activeMarker}
-                visible={markerInfo.showingInfoWindow}>
-                <div>
-                    <h1>test</h1>
-                </div>
-            </InfoWindow> */}
+            {createMarkers()}
             </Map>
-            <div className="customer-div">
+            <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
                 <h3>Customer Info</h3>
                 <div className="customer-info">
                     <p>Name:</p>
