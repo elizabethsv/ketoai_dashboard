@@ -58,22 +58,31 @@ export const MapTest = (props) =>{
         {latitude:29.832076, longitude:-95.550651},
         {latitude: 30.132650, longitude:-95.462870}
     ])
+
+    let [animation, setAnimation] = useState(null)
     
 
     console.log(locations)
 
-
+    //args: 
     const onMarkerClick=(props,marker,e)=>{
-        setMarkerInfo({
-            showingInfoWindow: true,
-            activeMarker: marker,
-        })
+        if(marker.animation !== null){
+            marker.setAnimation(null)
+        }else{
+            marker.setAnimation(1)
+        }
+        
     }
 
 
     const createMarkers=()=>{
         return locations.map(loc=>{
-            return  <Marker position={{lat:loc.latitude, lng:loc.longitude}}/>
+            return(
+            <Marker position={{lat:loc.latitude, lng:loc.longitude}}
+                    onClick={onMarkerClick}
+                    animation={animation}
+                    />
+            )
         })
     }
    
