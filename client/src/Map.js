@@ -5,9 +5,8 @@ const API_KEY = ''
 
 //need to change 
 const mapStyles={
-    height: '100%', 
-    width:'100%',
-    position: 'absolute'
+    height: '390px', 
+    width:'40%',
 }
 
 //need to integrate this into dashboard. 
@@ -54,7 +53,7 @@ export const MapTest = (props) =>{
     }
    
     return(
-        <div class="container">
+       <React.Fragment>
             <Map
             google={props.google}
             zoom={8}
@@ -64,7 +63,8 @@ export const MapTest = (props) =>{
             {createMarkers()}
           
             </Map>
-            <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
+            {/* <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
+         
                 <h3>Customer Info</h3>
                 <div className="customer-info">
                     <p>Name:</p>
@@ -72,8 +72,9 @@ export const MapTest = (props) =>{
                     <p>Live Data:</p>
                     <div class="live-data"></div>
                 </div>
-            </div>
-        </div>
+            </div> */}
+
+        </React.Fragment>
     )
     
 }
