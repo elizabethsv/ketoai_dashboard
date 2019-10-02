@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    //padding: '0 8px',
+    padding: '0 8px',
     ...theme.mixins.toolbar,
   },
   toolbarLogo: {
@@ -119,7 +119,7 @@ const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    // height: '100vh',
+    height: '100vh',
     overflow: 'auto',
   },
   container: {
@@ -196,20 +196,20 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
+        <Container maxWidth="lg">
+          <Grid container spacing={3} className={classes.paper}>
             {/* Map */}
-            <Grid item xs={12} md={8} lg={9} className={fixedHeightPaper}>
-             
-                <MapTest />
-             
+            <Grid item xs={12}>
+              
+                  <MapTest />
+              
             </Grid>
             {/* Customer Info */}
-            <Grid item xs={12} md={4} lg={3}>
+            {/* <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <CustomerInfo />
               </Paper>
-            </Grid>
+            </Grid> */}
             {/* Technician Routes */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
