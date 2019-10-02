@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper, Polyline} from 'google-maps-react';
 import './App.css'
 import CustomerInfo from './components/CustomerInfo'
 
@@ -28,8 +28,13 @@ export const MapTest = (props) =>{
 
     let [customerInfo, setCustomerInfo] = useState(null)
     
-
-
+    let line = [
+        {lat:29.794940, lng:-95.569930}, 
+        {lat:29.784013, lng:-95.651611},
+        {lat:29.832076, lng:-95.550651},
+        {lat: 30.132650, lng:-95.462870}
+    ]
+    
 
     //Need to add a close button to div 
     const onMarkerClick=(props,marker,e)=>{
@@ -65,8 +70,13 @@ export const MapTest = (props) =>{
             containerStyle={{width: '100%', height: '300px',position:'relative' }}
             disableDefaultUI={true}
             >
+                <Polyline
+            path={line}
+            strokeColor="#0000FF"
+            strokeOpacity={0.8}
+            strokeWeight={2} />
             {createMarkers()}
-          
+           
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
