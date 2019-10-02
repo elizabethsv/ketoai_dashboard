@@ -21,9 +21,12 @@ import { mainListItems } from './MenuItems.js';
 import RouteMap from './RouteMap';
 import CustomerInfo from './CustomerInfo';
 import DriverRoute from './DriverRoute';
+import KetoLogo from '../assets/keto_logo.png'
+
 
 function Copyright() {
   return (
+      <div>
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://www.keto-ai.com/">
@@ -32,6 +35,7 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
+    </div>
   );
 }
 
@@ -45,11 +49,26 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 24, // keep right padding when drawer closed
     backgroundColor: 'rgb(11, 0, 128)'
   },
+  toolbarMain: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    justifyContent: 'space-between',
+    ...theme.mixins.toolbar,
+  },
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    //padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
+  toolbarLogo: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     padding: '0 8px',
+    maxWidth: 50,
     ...theme.mixins.toolbar,
   },
   appBar: {
@@ -159,10 +178,16 @@ export default function Dashboard() {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
+        <div className={classes.toolbarMain}>
+        <span className={classes.toolbarLogo}>
+            <img src={KetoLogo} alt="logo"  />
+        </span>
+        <span className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
+
           </IconButton>
+        </span>
         </div>
         <Divider />
         <List>{mainListItems}</List>
