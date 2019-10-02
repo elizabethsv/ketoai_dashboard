@@ -23,7 +23,13 @@ import CustomerInfo from './CustomerInfo';
 import DriverRoute from './DriverRoute';
 import KetoLogo from '../assets/keto_logo.png'
 import MapTest from '../Map'
+import AllRoutes from './AllRoutes.js';
+import { DragDropContext } from 'react-beautiful-dnd'
+import styled from 'styled-components'
 
+const DivFlexBox = styled.div`
+    display: flex;
+`
 
 function Copyright() {
   return (
@@ -213,7 +219,11 @@ export default function Dashboard() {
             {/* Technician Routes */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <DriverRoute />
+                <DragDropContext>
+                  <DivFlexBox>
+                <AllRoutes />
+                </DivFlexBox>
+                </DragDropContext>
               </Paper>
             </Grid>
           </Grid>
