@@ -1,0 +1,45 @@
+<svg width="342px" height="342px" viewBox="0 0 342 342" version="1.1" xmlns="http://www.w3.org/2000/svg" xlinkHref="http://www.w3.org/1999/xlink" href="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <linearGradient x1="89.7183677%" y1="100%" x2="4.93073088%" y2="0%" id="linearGradient-1">
+                            <stop stopColor="#C7BB1C" offset="0%"></stop>
+                            <stop stopColor="#9A0927" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="51.1436507%" y1="96.6390159%" x2="51.1436507%" y2="1.14365065%" id="linearGradient-2">
+                            <stop stopColor="#B00B33" offset="0%"></stop>
+                            <stop stopColor="#D66A1E" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="89.7183677%" y1="100%" x2="4.93073088%" y2="0%" id="linearGradient-3">
+                            <stop stopColor="#C7761C" offset="0%"></stop>
+                            <stop stopColor="#D4920A" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="51.1436507%" y1="1.14365065%" x2="51.1436507%" y2="98.8563493%" id="linearGradient-4">
+                            <stop stopColor="#9C3B08" offset="0%"></stop>
+                            <stop stopColor="#944215" offset="0%"></stop>
+                            <stop stopColor="#C8781A" offset="90.5233923%"></stop>
+                            <stop stopColor="#B06E09" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="Images" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                        <g id="circles">
+                            <circle id="Oval-Copy-2" fillOpacity="0.33" fill="url(#linearGradient-1)" cx="171" cy="171" r="171"></circle>
+                            <circle id="Oval-Copy" fillOpacity="0.33" fill="url(#linearGradient-2)" cx="171.5" cy="171.5" r="144.5">
+                            <animate
+                                    attributeName="r" values="144.5; 146.5; 148.5; 151.5; 156.5; 151.5; 148.5; 146.5; 144.5"
+                                    dur="5s" repeatCount="indefinite" />
+                            </circle>
+                            <circle id="Oval-Copy-2" fillOpacity="0.33" fill="url(#linearGradient-3)" cx="171" cy="171" r="127">
+                            <animate
+                                    attributeName="r" values="127; 135; 142; 140; 138; 136; 134; 132; 127"
+                                    dur="5s" repeatCount="indefinite" />
+                            </circle>
+                            <circle id="Oval-Copy" fillOpacity="0.44" fill="url(#linearGradient-4)" cx="172" cy="172" r="93">
+                            <animate
+                                    attributeName="r" values="93; 101; 100; 95; 93; 101; 100; 95; 93"
+                                    dur="5s" repeatCount="indefinite" />
+                            </circle>
+                            <text id="!" fill="#FFFFFF" fontFamily="Helvetica" fontSize="96" fontWeight="normal">
+                                <tspan x="158.164062" y="205">!</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </svg>
