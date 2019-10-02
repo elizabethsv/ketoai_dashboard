@@ -1,12 +1,15 @@
 import React,{useState, useEffect} from 'react'
 import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import './App.css'
+import CustomerInfo from './components/CustomerInfo'
+
 const API_KEY = ''
 
 
 //need to change 
 const mapStyles={
-    height: '380px', 
-    width:'60%',
+    width:'100%',
+    border:'none'
 }
 
 //need to integrate this into dashboard. 
@@ -23,7 +26,7 @@ export const MapTest = (props) =>{
 
     let [animation, setAnimation] = useState(null)
 
-    let [customerInfo, setCustomerInfo] = useState(false)
+    let [customerInfo, setCustomerInfo] = useState(null)
     
 
 
@@ -32,7 +35,7 @@ export const MapTest = (props) =>{
     const onMarkerClick=(props,marker,e)=>{
         if(marker.animation !== null){
             marker.setAnimation(null)
-            setCustomerInfo(false)
+            setCustomerInfo(null)
             
         }else{
             marker.setAnimation(1)
@@ -53,27 +56,26 @@ export const MapTest = (props) =>{
     }
    
     return(
-       <div class="container">
+       <div className="container">
             <Map
             google={props.google}
             zoom={8}
             style={mapStyles}
             initialCenter={{lat: 29.794940, lng: -95.569930}}
-            containerStyle={{width: '80%', height: '300px' }}
+            containerStyle={{width: '100%', height: '300px',position:'relative' }}
+            disableDefaultUI={true}
             >
             {createMarkers()}
           
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
-                <h3>Customer Info</h3>
+                <h3>Customer Information</h3>
                 <div className="customer-info">
-                    <p>Name:</p>
-                    <p>Address</p>
-                    <p>Live Data:</p>
-                    <div class="live-data"></div>
+                    <CustomerInfo />
                 </div>
             </div>
+           
 
         </div>
     )

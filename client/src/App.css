@@ -1,6 +1,6 @@
 .container{
-  height: 80vh;
-  position:relative
+  /* height:500px; */
+  position:relative;
 }
 
 .customer-div{
@@ -9,13 +9,19 @@
 }
 
 .display-customer-info{
-  background-color:rgba(255, 255, 255, 0.801);
+  background-color:#ffffff63;
   width:40%;
-  height:100%;
+  height:245px;
   position: absolute;
   left: 60%;
+  bottom:55px;
   display:flex;
   flex-direction:column;
   align-items:center;
   display:block;
+}
+
+.customer-info{
+  background-color:white;
+  height:100%;
 }
