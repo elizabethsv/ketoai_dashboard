@@ -1,7 +1,5 @@
-import React,{useState} from 'react'
-import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
-import { useLayoutEffect } from 'react';
-import { useEffect } from 'react';
+import React,{useState, useEffect} from 'react'
+import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 const API_KEY = ''
 
 
@@ -11,7 +9,6 @@ const mapStyles={
     width:'100%',
     position: 'absolute'
 }
-
 
 //need to integrate this into dashboard. 
 
@@ -65,6 +62,7 @@ export const MapTest = (props) =>{
             initialCenter={{lat: 29.794940, lng: -95.569930}}
             >
             {createMarkers()}
+          
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
                 <h3>Customer Info</h3>
