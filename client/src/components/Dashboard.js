@@ -22,6 +22,7 @@ import RouteMap from './RouteMap';
 import CustomerInfo from './CustomerInfo';
 import DriverRoute from './DriverRoute';
 import KetoLogo from '../assets/keto_logo.png'
+import MapTest from '../Map'
 
 
 function Copyright() {
@@ -118,7 +119,7 @@ const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: '100vh',
+    // height: '100vh',
     overflow: 'auto',
   },
   container: {
@@ -128,11 +129,12 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     display: 'flex',
-    overflow: 'auto',
+    overflow: 'hidden',
     flexDirection: 'column',
   },
   fixedHeight: {
     height: 400,
+    overflow:'hidden'
   },
 }));
 
@@ -199,7 +201,7 @@ export default function Dashboard() {
             {/* Map */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <RouteMap />
+                <MapTest />
               </Paper>
             </Grid>
             {/* Customer Info */}

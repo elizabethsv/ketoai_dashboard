@@ -1,8 +1,15 @@
 import React from 'react';
 import './App.css';
+import MapTest from './Map'
+
+
+
 
 const App = () =>{
-  return <div></div>
+
+  return (
+    <MapTest/>
+  )
 }
 
 export default App;
