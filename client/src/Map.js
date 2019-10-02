@@ -5,8 +5,8 @@ const API_KEY = ''
 
 //need to change 
 const mapStyles={
-    height: '390px', 
-    width:'40%',
+    height: '380px', 
+    width:'60%',
 }
 
 //need to integrate this into dashboard. 
@@ -53,17 +53,18 @@ export const MapTest = (props) =>{
     }
    
     return(
-       <React.Fragment>
+       <div class="container">
             <Map
             google={props.google}
             zoom={8}
             style={mapStyles}
             initialCenter={{lat: 29.794940, lng: -95.569930}}
+            containerStyle={{width: '80%', height: '300px' }}
             >
             {createMarkers()}
           
             </Map>
-            {/* <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
+            <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
                 <h3>Customer Info</h3>
                 <div className="customer-info">
@@ -72,13 +73,13 @@ export const MapTest = (props) =>{
                     <p>Live Data:</p>
                     <div class="live-data"></div>
                 </div>
-            </div> */}
+            </div>
 
-        </React.Fragment>
+        </div>
     )
     
 }
 
 export default GoogleApiWrapper({
-    apiKey: API_KEY
+    apiKey: API_KEY,
 })(MapTest)

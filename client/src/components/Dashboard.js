@@ -199,10 +199,10 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Map */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
+            <Grid item xs={12} md={8} lg={9} className={fixedHeightPaper}>
+             
                 <MapTest />
-              </Paper>
+             
             </Grid>
             {/* Customer Info */}
             <Grid item xs={12} md={4} lg={3}>
