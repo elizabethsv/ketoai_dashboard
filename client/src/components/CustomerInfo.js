@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Title from './Title';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import OpacityIcon from '@material-ui/icons/Opacity';
-
+import Icon from '@material-ui/core/Icon'
 
 const useStyles = makeStyles(theme => ({
 
@@ -14,10 +14,17 @@ const useStyles = makeStyles(theme => ({
   iconDisplay: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   iconFont: {
-    fontSize: '.8vw',
+    fontSize: '12px',
+    paddingRight: '10px'
+  },
+  iconFontEnd: {
+    fontSize: '12px',
+    paddingRight: '10px',
+    marginLeft: '-5px',
   }
 }));
 
