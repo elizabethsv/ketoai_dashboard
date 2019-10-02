@@ -27,7 +27,6 @@ export default function CustomerInfo() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Customer Information</Title>
       <Typography component="p" className={classes.depositContext}>
         Name: John Doe
       </Typography>
@@ -43,12 +42,7 @@ export default function CustomerInfo() {
             <p className={classes.iconFont}>pH: 7.1</p>
             <MoreVertIcon />
             <p className={classes.iconFont}>ORP: 550</p>
-
-
-
-
-
       </div>
-    </React.Fragment>
+      </React.Fragment>
   );
 }
