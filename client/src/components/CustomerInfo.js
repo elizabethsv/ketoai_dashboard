@@ -44,11 +44,11 @@ export default function CustomerInfo() {
         Live Data: 
       </Typography>
       <div className={classes.iconDisplay}>
-          
+            <Icon></Icon>
             <OpacityIcon />
             <p className={classes.iconFont}>pH: 7.1</p>
             <MoreVertIcon />
-            <p className={classes.iconFont}>ORP: 550</p>
+            <p className={classes.iconFontEnd}>ORP: 550</p>
       </div>
       </React.Fragment>
   );
