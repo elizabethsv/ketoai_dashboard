@@ -17,19 +17,20 @@ const Container = styled.div`
     border: 1px solid lightgrey;
     border-radius: 2px;
     width: fit-content;
+    min-width: 800px;
     display: flex;
     flex-direction: row;
     `;
 const DriverName = styled.h3`
     padding: 8px;
-    min-width: 50px
+    min-width: 100px
 `;
 const StopsList = styled.div`
     padding: 8px;
     transition: background-color 0.2s ease;
     background-color: ${props => (props.isDraggingOver ? '#02a1e2' : 'white')}
     display: flex;
-    min-width: 200px
+    min-width: 700px
 `;
 
 export default class DriverRoute extends React.Component {
@@ -43,7 +44,7 @@ export default class DriverRoute extends React.Component {
                 ref={provided.innerRef} 
                 {...provided.droppableProps}
                 isDraggingOver={snapshot.isDraggingOver}>
-                    {this.props.stops.map((stop, index) => (<TechnicianStop key={stop.id} stop={stop} index={index} />))}
+                    {this.props.stops.map((stop, index, driverRoute) => (<TechnicianStop driver={this.props.driverRoute.driverName}key={stop.id} stop={stop} index={index} />))}
                     {provided.placeholder}
                 </StopsList>
                 )}

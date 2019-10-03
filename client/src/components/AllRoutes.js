@@ -13,26 +13,26 @@ const Container = styled.div`
 
 const initialStops = {
     stops: {
-        'stop-1': {id: 'stop-1', content: 'S1'},
-        'stop-2': {id: 'stop-2', content: 'S2'},
-        'stop-3': {id: 'stop-3', content: 'S3'},
-        'stop-4': {id: 'stop-4', content: 'S4'},
-        'stop-5': {id: 'stop-5', content: 'S5'},
+        'stop-1': {id: 'stop-1', content: '',},
+        'stop-2': {id: 'stop-2', content: ''},
+        'stop-3': {id: 'stop-3', content: ''},
+        'stop-4': {id: 'stop-4', content: ''},
+        'stop-5': {id: 'stop-5', content: ''},
     },
     driverRoutes: {
         'driverRoute-1': {
             id: 'driverRoute-1',
-            title: 'Driver 1',
+            driverName: 'Frank',
             stopIds: ['stop-1', 'stop-2','stop-3','stop-4', 'stop-5']
         },
         'driverRoute-2': {
             id: 'driverRoute-2',
-            title: 'Driver 2',
+            driverName: 'Thomas',
             stopIds: []
         },
         'driverRoute-3': {
             id: 'driverRoute-3',
-            title: 'Driver 3',
+            driverName: 'Mary',
             stopIds: []
         },
     },
@@ -43,6 +43,7 @@ const initialStops = {
 
 class AllRoutes extends React.Component {
     state = initialStops;
+
 
     //  onDragStart =() => {
     //      document.body.style.color = 'orange'
