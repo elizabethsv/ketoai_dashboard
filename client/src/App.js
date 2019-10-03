@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import MapTest from './Map'
 
 
 
@@ -8,7 +7,7 @@ import MapTest from './Map'
 const App = () =>{
 
   return (
-    <MapTest/>
+    <div></div>
   )
 }
 

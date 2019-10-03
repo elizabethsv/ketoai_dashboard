@@ -22,7 +22,7 @@ import RouteMap from './RouteMap';
 import CustomerInfo from './CustomerInfo';
 import DriverRoute from './DriverRoute';
 import KetoLogo from '../assets/keto_logo.png'
-import MapTest from '../Map'
+
 import AllRoutes from './AllRoutes.js';
 import { DragDropContext } from 'react-beautiful-dnd'
 import styled from 'styled-components'
@@ -207,7 +207,7 @@ export default function Dashboard() {
             {/* Map */}
             <Grid item xs={12}>
               
-                  <MapTest />
+                  <RouteMap />
               
             </Grid>
             {/* Customer Info */}

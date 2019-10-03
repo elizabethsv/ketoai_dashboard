@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components'
 import DriverRoute from './DriverRoute'
@@ -12,11 +12,11 @@ const Container = styled.div`
 
 const initialStops = {
     stops: {
-        'stop-1': {id: 'stop-1', content: 'S1'},
-        'stop-2': {id: 'stop-2', content: 'S2'},
-        'stop-3': {id: 'stop-3', content: 'S3'},
-        'stop-4': {id: 'stop-4', content: 'S4'},
-        'stop-5': {id: 'stop-5', content: 'S5'},
+        'stop-1': {id: 'stop-1', content: 'S1', latitude:29.794940, longitude: -95.569930},
+        'stop-2': {id: 'stop-2', content: 'S2', latitude:29.794940, longitude: -95.569930},
+        'stop-3': {id: 'stop-3', content: 'S3', latitude:29.794940, longitude: -95.569930},
+        'stop-4': {id: 'stop-4', content: 'S4', latitude:29.794940, longitude: -95.569930},
+        'stop-5': {id: 'stop-5', content: 'S5', latitude:29.794940, longitude: -95.569930},
     },
     driverRoutes: {
         'driverRoute-1': {
