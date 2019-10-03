@@ -14,10 +14,10 @@ const Container = styled.div`
 const initialStops = {
     stops: {
         'stop-1': {id: 'stop-1', content: '', latitude:29.794940, longitude: -95.569930},
-        'stop-2': {id: 'stop-2', content: '', latitude:29.794940, longitude: -95.569930},
-        'stop-3': {id: 'stop-3', content: '', latitude:29.794940, longitude: -95.569930},
+        'stop-2': {id: 'stop-2', content: '', latitude:29.784013, longitude:-95.651611},
+        'stop-3': {id: 'stop-3', content: '', latitude:29.832076, longitude:-95.550651},
         'stop-4': {id: 'stop-4', content: '', latitude:29.794940, longitude: -95.569930},
-        'stop-5': {id: 'stop-5', content: '', latitude:29.794940, longitude: -95.569930},
+        'stop-5': {id: 'stop-5', content: '', latitude:30.132650, longitude:-95.462870},
 
     },
     driverRoutes: {
@@ -42,8 +42,9 @@ const initialStops = {
 };
 
 
-const AllRoutes = () =>{
+const AllRoutes = (props) =>{
     let [routeStops, setRouteStops] = useState(initialStops)
+    props.techStops(initialStops)
     const onDragStart =() => {
         document.body.style.color = 'orange'
         document.body.style.transition = 'background-color 0.2s ease';
@@ -91,7 +92,8 @@ const AllRoutes = () =>{
                    [newDriverRoute.id]: newDriverRoute
                }
            }
-           setRouteStops(newState);   
+           setRouteStops(newState);
+           props.techStops(newState)   
            return;         
        }
 
@@ -118,6 +120,7 @@ const AllRoutes = () =>{
            },
        }
        setRouteStops(newState)
+       props.techStops(newState)
 
 
    };

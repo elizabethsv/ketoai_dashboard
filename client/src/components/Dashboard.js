@@ -147,6 +147,16 @@ const useStyles = makeStyles(theme => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  //passing the array of routes to both children(RouteMap + DriverRoute)
+  const [routes, setRoutes] = React.useState([])
+  
+
+  const getRoutes = (routesInfo) =>{
+    setRoutes(routesInfo)
+  }
+
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -207,7 +217,7 @@ export default function Dashboard() {
             {/* Map */}
             <Grid item xs={12}>
               
-                  <RouteMap />
+                  <RouteMap routeinfo={routes}/>
               
             </Grid>
             {/* Customer Info */}
@@ -221,7 +231,7 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 <DragDropContext>
                   <DivFlexBox>
-                <AllRoutes />
+                <AllRoutes techStops={(routesInfo)=>getRoutes(routesInfo)} />
                 </DivFlexBox>
                 </DragDropContext>
               </Paper>

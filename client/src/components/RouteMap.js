@@ -17,24 +17,22 @@ const mapStyles={
 export const RouteMap = (props) =>{
    
     //use geocoding for the addresses to convert it to lat/long?
-    let [locations, setLocations]=useState([
-        {locationId: null, technicianId: null, latitude:29.794940, longitude:-95.569930}, 
-        {locationId: null, technicianId: null, latitude:29.784013, longitude:-95.651611},
-        {locationId: null, technicianId: null, latitude:29.832076, longitude:-95.550651},
-        {locationId: null, technicianId: null, latitude:30.132650, longitude:-95.462870}
-    ])
+    // let [locations, setLocations]=useState([
+    //     {locationId: null, technicianId: null, latitude:29.794940, longitude:-95.569930}, 
+    //     {locationId: null, technicianId: null, latitude:29.784013, longitude:-95.651611},
+    //     {locationId: null, technicianId: null, latitude:29.832076, longitude:-95.550651},
+    //     {locationId: null, technicianId: null, latitude:30.132650, longitude:-95.462870}
+    // ])
+    
 
     let [animation, setAnimation] = useState(null)
+    let [routeInfo, setRouteInfo] = useState(props.routeinfo)
+    
+    console.log(routeInfo.stops['stop-1'].latitude)
     
 
     let [customerInfo, setCustomerInfo] = useState(null)
     
-    let line = [
-        {lat:29.794940, lng:-95.569930}, 
-        {lat:29.784013, lng:-95.651611},
-        {lat:29.832076, lng:-95.550651},
-        {lat: 30.132650, lng:-95.462870}
-    ]
     
 
     //Need to add a close button to div 
@@ -51,14 +49,16 @@ export const RouteMap = (props) =>{
 
     //Need to change color depending on driver 
     const createMarkers=()=>{
-        return locations.map(loc=>{
-            return(
-            <Marker position={{lat:loc.latitude, lng:loc.longitude}}
-                    onClick={onMarkerClick}
-                    animation={animation}
-                    />
+        let markers=[]
+        for(const[key,value] of Object.entries(routeInfo.stops)){
+            console.log(value.latitude)
+            markers.push(<Marker 
+                position={{ lat: value.latitude, lng: value.longitude }}
+                onClick={onMarkerClick}
+                animation={animation}/>
             )
-        })
+        }
+        return markers
     }
    
     return(
@@ -71,11 +71,11 @@ export const RouteMap = (props) =>{
             containerStyle={{width: '100%', height: '300px',position:'relative' }}
             disableDefaultUI={true}
             >
-                <Polyline
+                {/* <Polyline
             path={line}
             strokeColor="#0000FF"
             strokeOpacity={0.8}
-            strokeWeight={2} />
+            strokeWeight={2} /> */}
             {createMarkers()}
            
             </Map>
