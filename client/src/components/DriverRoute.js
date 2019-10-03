@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd'
 import { Paper } from '@material-ui/core';
 import TechnicianStop from './TechnicianStop';
-
+import Title from './Title'
  
 const useStyles = makeStyles(theme => ({
     fillClass: {
@@ -16,7 +16,7 @@ const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
     border-radius: 2px;
-    width: 220px;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     `;
@@ -27,7 +27,7 @@ const DriverName = styled.h3`
 const StopsList = styled.div`
     padding: 8px;
     transition: background-color 0.2s ease;
-    background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')}
+    background-color: ${props => (props.isDraggingOver ? '#02a1e2' : 'white')}
     display: flex;
     min-width: 200px
 `;

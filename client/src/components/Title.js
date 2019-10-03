@@ -4,9 +4,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 
+
 const useStyles = makeStyles(theme => ({
     fontProps: {
         color: 'rgb(11, 0, 128)',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'inherit',
+        justifyContent: 'space-around',        
     }
 
 }));

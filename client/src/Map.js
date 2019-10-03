@@ -2,6 +2,9 @@ import React,{useState, useEffect} from 'react'
 import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css'
 import CustomerInfo from './components/CustomerInfo'
+import Title from './components/Title';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 const API_KEY = ''
 
@@ -11,6 +14,7 @@ const mapStyles={
     width:'100%',
     border:'none'
 }
+
 
 //need to integrate this into dashboard. 
 
@@ -43,6 +47,12 @@ export const MapTest = (props) =>{
         }   
     }
 
+    const onCloseClick=(props, e)=>{
+        setCustomerInfo(null)
+    }
+
+
+
     //Need to change color depending on driver 
     const createMarkers=()=>{
         return locations.map(loc=>{
@@ -70,7 +80,11 @@ export const MapTest = (props) =>{
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
-                <h3>Customer Information</h3>
+                <Title>Customer Information
+                <CloseIcon 
+                onClick={()=> onCloseClick()}
+                />
+                </Title>
                 <div className="customer-info">
                     <CustomerInfo />
                 </div>
