@@ -2,8 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import OpacityIcon from '@material-ui/icons/Opacity';
+import CloseIcon from '@material-ui/icons/Close';
 import Icon from '@material-ui/core/Icon'
 
 const useStyles = makeStyles(theme => ({
@@ -34,6 +33,7 @@ export default function CustomerInfo() {
   const classes = useStyles();
   return (
     <React.Fragment>
+      
       <Typography component="p" className={classes.depositContext}>
         Name: John Doe
       </Typography>
