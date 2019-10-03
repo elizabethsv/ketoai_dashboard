@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import DriverRoute from './DriverRoute'
 import { DragDropContext } from 'react-beautiful-dnd';
 import '../index.css'
+import Title from './Title'
 
 
 const Container = styled.div`
@@ -17,21 +18,26 @@ const initialStops = {
         'stop-3': {id: 'stop-3', content: 'S3', latitude:29.794940, longitude: -95.569930},
         'stop-4': {id: 'stop-4', content: 'S4', latitude:29.794940, longitude: -95.569930},
         'stop-5': {id: 'stop-5', content: 'S5', latitude:29.794940, longitude: -95.569930},
+        'stop-1': {id: 'stop-1', content: '',},
+        'stop-2': {id: 'stop-2', content: ''},
+        'stop-3': {id: 'stop-3', content: ''},
+        'stop-4': {id: 'stop-4', content: ''},
+        'stop-5': {id: 'stop-5', content: ''},
     },
     driverRoutes: {
         'driverRoute-1': {
             id: 'driverRoute-1',
-            title: 'Driver 1',
-            stopIds: ['stop-1', 'stop-2','stop-3','stop-4']
+            driverName: 'Frank',
+            stopIds: ['stop-1', 'stop-2','stop-3','stop-4', 'stop-5']
         },
         'driverRoute-2': {
             id: 'driverRoute-2',
-            title: 'Driver 2',
+            driverName: 'Thomas',
             stopIds: []
         },
         'driverRoute-3': {
             id: 'driverRoute-3',
-            title: 'Driver 3',
+            driverName: 'Mary',
             stopIds: []
         },
     },
@@ -43,10 +49,11 @@ const initialStops = {
 class AllRoutes extends React.Component {
     state = initialStops;
 
-     onDragStart =() => {
-         document.body.style.color = 'orange'
-         document.body.style.transition = 'background-color 0.2s ease';
-     }
+
+    //  onDragStart =() => {
+    //      document.body.style.color = 'orange'
+    //      document.body.style.transition = 'background-color 0.2s ease';
+    //  }
 
      onDragUpdate = update => {
          const {destination} = update;
@@ -122,6 +129,9 @@ class AllRoutes extends React.Component {
 
     render() {
         return (
+            <div>
+                <Title>Technicians</Title>
+
             <DragDropContext 
             onDragStart={this.onDragStart}
             onDragUpdate={this.onDragUpdate}
@@ -135,6 +145,7 @@ class AllRoutes extends React.Component {
         })}
         </Container>
         </DragDropContext>
+        </div>
         );
     }
 }

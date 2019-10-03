@@ -10,7 +10,8 @@ const Container = styled.div`
     border-radius: 50%;
     height: 40px;
     width: 40px;
-    background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')}
+    background-color: ${props => (props.isDragging ? '#0B0080' : 'white')};
+    color: ${props => (props.isDragging ? 'white' : 'black')};
     display: flex;
     justify-content: center;
     align-items: center
@@ -29,7 +30,7 @@ export default class TechnicianStop extends React.Component {
                 isDragging={snapshot.isDragging}
             >
                 
-            {this.props.stop.content} 
+                {this.props.driver[0] + (this.props.index + 1)} 
             </Container>
                 )}
             </Draggable>
