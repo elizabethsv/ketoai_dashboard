@@ -131,7 +131,6 @@ const AllRoutes = (props) =>{
 
        //moving from one list to another
        const startStopIds = Array.from(start.stopIds);
-       console.log(startStopIds)
        startStopIds.splice(source.index, 1);
        const newStart = {
            ...start,

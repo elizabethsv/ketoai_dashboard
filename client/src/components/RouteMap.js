@@ -3,6 +3,8 @@ import { Map, Marker, GoogleApiWrapper, Polyline} from 'google-maps-react';
 import './App.css'
 import CustomerInfo from './CustomerInfo'
 import { blue } from '@material-ui/core/colors';
+import {connect} from 'react-redux'
+import {changeRoutes} from '../actions/index'
 
 const API_KEY = ''
 
@@ -12,13 +14,23 @@ const mapStyles={
 }
 
 
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        changeRoutes: routes => dispatch(changeRoutes(routes))
+    }
+}
+
+const mapStateToProps=state=>{
+    return{
+        routes: state
+    }
+}
 
 
-
-export const RouteMap = (props) =>{
+export const MapRoutes = (props) =>{
     let mapRef = React.createRef()
     let [animation, setAnimation] = useState(null)
-    let [routeInfo, setRouteInfo] = useState(props.routeinfo)
+    // let [routeInfo, setRouteInfo] = useState(props.routeinfo)
     let [markers, setMarkers] =useState([])
     let [customerInfo, setCustomerInfo] = useState(null)
 
@@ -40,9 +52,9 @@ export const RouteMap = (props) =>{
  
     let newMarkers=[]
     const createMarkers=()=>{
-        routeInfo.driverRouteOrder.map((routeid)=>{
-            const driverRoute = routeInfo.driverRoutes[routeid]
-            const stops = driverRoute.stopIds.map(stopId=> routeInfo.stops[stopId])
+        props.routes.driverRouteOrder.map((routeid)=>{
+            const driverRoute = props.routes.driverRoutes[routeid]
+            const stops = driverRoute.stopIds.map(stopId=> props.routes.stops[stopId])
             for(let i=0; i<stops.length; i++){
                 newMarkers.push(<Marker key={driverRoute.name}
                     position={{lat: stops[i].latitude, lng: stops[i].longitude}}
@@ -54,16 +66,17 @@ export const RouteMap = (props) =>{
         })
         
     }
-    useEffect(()=>{
-        createMarkers()
+    // useEffect(()=>{
+    //     createMarkers()
         
-        console.log(markers)
-    },[])
+    //     console.log(markers)
+    // },[])
 
    useEffect(()=>{
-        setMarkers([...markers, newMarkers])
+        createMarkers()
+        setMarkers(newMarkers)
         console.log(markers)
-   },[routeInfo.driverRoutes])
+   },[props.routes])
    
     return(
        <div className="container">
@@ -94,6 +107,7 @@ export const RouteMap = (props) =>{
     
 }
 
+const RouteMap = connect(mapStateToProps,mapDispatchToProps)(MapRoutes)
 export default GoogleApiWrapper({
     apiKey: API_KEY,
 })(RouteMap)
