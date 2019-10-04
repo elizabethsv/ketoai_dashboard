@@ -5,56 +5,73 @@ import DriverRoute from './DriverRoute'
 import { DragDropContext } from 'react-beautiful-dnd';
 import '../index.css'
 import Title from './Title'
-
+import {changeRoutes} from '../actions/index'
+import {connect} from 'react-redux'
 
 const Container = styled.div`
     display: flex;
 `
-let markerStyles = {
-    'style1': 'blue',
-    'style2': 'yellow',
-    'style3': 'green',
-    'default':'yellow'
+// let markerStyles = {
+//     'style1': 'blue',
+//     'style2': 'yellow',
+//     'style3': 'green',
+//     'default':'yellow'
+// }
+
+// const initialStops = {
+//     stops: {
+//         'stop-1': {id: 'stop-1', content: '', latitude:29.794940, longitude: -95.569930},
+//         'stop-2': {id: 'stop-2', content: '', latitude:29.784013, longitude:-95.651611},
+//         'stop-3': {id: 'stop-3', content: '', latitude:29.832076, longitude:-95.550651},
+//         'stop-4': {id: 'stop-4', content: '', latitude:29.794940, longitude: -95.569930},
+//         'stop-5': {id: 'stop-5', content: '', latitude:30.132650, longitude:-95.462870},
+
+//     },
+//     driverRoutes: {
+//         'driverRoute-1': {
+//             id: 'driverRoute-1',
+//             driverName: 'Frank',
+//             color: markerStyles.style1,
+//             stopIds: ['stop-1', 'stop-2','stop-3','stop-4', 'stop-5']
+//         },
+//         'driverRoute-2': {
+//             id: 'driverRoute-2',
+//             driverName: 'Thomas',
+//             color: markerStyles.style2,
+//             stopIds: []
+//         },
+//         'driverRoute-3': {
+//             id: 'driverRoute-3',
+//             driverName: 'Mary',
+//             color: markerStyles.style3,
+//             stopIds: []
+//         },
+//     },
+//     //facilitates re-ordering of the columns
+//     driverRouteOrder: ['driverRoute-1', 'driverRoute-2', 'driverRoute-3'],
+// };
+
+
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        changeRoutes: routes => dispatch(changeRoutes(routes))
+    }
 }
 
-const initialStops = {
-    stops: {
-        'stop-1': {id: 'stop-1', content: '', latitude:29.794940, longitude: -95.569930},
-        'stop-2': {id: 'stop-2', content: '', latitude:29.784013, longitude:-95.651611},
-        'stop-3': {id: 'stop-3', content: '', latitude:29.832076, longitude:-95.550651},
-        'stop-4': {id: 'stop-4', content: '', latitude:29.794940, longitude: -95.569930},
-        'stop-5': {id: 'stop-5', content: '', latitude:30.132650, longitude:-95.462870},
-
-    },
-    driverRoutes: {
-        'driverRoute-1': {
-            id: 'driverRoute-1',
-            driverName: 'Frank',
-            color: markerStyles.style1,
-            stopIds: ['stop-1', 'stop-2','stop-3','stop-4', 'stop-5']
-        },
-        'driverRoute-2': {
-            id: 'driverRoute-2',
-            driverName: 'Thomas',
-            color: markerStyles.style2,
-            stopIds: []
-        },
-        'driverRoute-3': {
-            id: 'driverRoute-3',
-            driverName: 'Mary',
-            color: markerStyles.style3,
-            stopIds: []
-        },
-    },
-    //facilitates re-ordering of the columns
-    driverRouteOrder: ['driverRoute-1', 'driverRoute-2', 'driverRoute-3'],
-};
-
+const mapStateToProps=state=>{
+    return{
+        routes: state
+    }
+}
 
 const AllRoutes = (props) =>{
-    let [routeStops, setRouteStops] = useState(initialStops)
+    // let [routeStops, setRouteStops] = useState('')
 
-    props.techStops(initialStops)
+    // props.techStops(initialStops)
+    console.log(props.routes)
+
+    
     const onDragStart =() => {
         document.body.style.color = 'orange'
         document.body.style.transition = 'background-color 0.2s ease';
@@ -62,7 +79,7 @@ const AllRoutes = (props) =>{
 
     const onDragUpdate = update => {
         const {destination} = update; 
-        const opacity = destination ? destination.index / Object.keys(routeStops.stops).length : 0;
+        const opacity = destination ? destination.index / Object.keys(props.routes.stops).length : 0;
         document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`
         }
 
@@ -82,8 +99,10 @@ const AllRoutes = (props) =>{
        ){
            return;
        }
-       const start = routeStops.driverRoutes[source.droppableId];
-       const finish = routeStops.driverRoutes[destination.droppableId];
+       const start = props.routes.driverRoutes[source.droppableId];
+
+       const finish = props.routes.driverRoutes[destination.droppableId];
+  
 
        if(start === finish){
            const newStopIds = Array.from(start.stopIds);
@@ -96,15 +115,17 @@ const AllRoutes = (props) =>{
                stopIds: newStopIds,
            };
            const newState = {
-               ...routeStops,
+               ...props.routes,
                driverRoutes: {
-                   ...routeStops.driverRoutes,
+                   ...props.routes.driverRoutes,
                    [newDriverRoute.id]: newDriverRoute
                }
            }
+           console.log(newState)
            
-           setRouteStops(newState);
-           props.techStops(newState)   
+           props.changeRoutes(newState)
+        //    setRouteStops(newState);
+           
            return;         
        }
 
@@ -123,15 +144,18 @@ const AllRoutes = (props) =>{
        }
 
        const newState = {
-           ...routeStops,
+           ...props.routes,
            driverRoutes: {
-               ...routeStops.driverRoutes,
+               ...props.routes.driverRoutes,
                [newStart.id]: newStart,
                [newFinish.id]: newFinish,
            },
        }
-       setRouteStops(newState)
-       props.techStops(newState)
+    //    setRouteStops(newState)
+    //    props.techStops(newState)
+            props.changeRoutes(newState)
+            
+            
 
 
    };
@@ -143,9 +167,9 @@ const AllRoutes = (props) =>{
            onDragUpdate={onDragUpdate}
            onDragEnd={onDragEnd} >
                <Container>
-           {routeStops.driverRouteOrder.map((driverRouteId) => {
-           const driverRoute = routeStops.driverRoutes[driverRouteId];
-           const stops = driverRoute.stopIds.map(stopId => routeStops.stops[stopId]);
+           {props.routes.driverRouteOrder.map((driverRouteId) => {
+           const driverRoute = props.routes.driverRoutes[driverRouteId];
+           const stops = driverRoute.stopIds.map(stopId => props.routes.stops[stopId]);
 
            return <DriverRoute key={driverRoute.id} driverRoute={driverRoute} stops={stops} />
        })}
@@ -155,4 +179,4 @@ const AllRoutes = (props) =>{
    }
 
 
-export default AllRoutes
+export default connect(mapStateToProps,mapDispatchToProps)(AllRoutes)
