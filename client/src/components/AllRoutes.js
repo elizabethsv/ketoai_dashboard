@@ -10,6 +10,12 @@ import Title from './Title'
 const Container = styled.div`
     display: flex;
 `
+let markerStyles = {
+    'style1': 'blue',
+    'style2': 'yellow',
+    'style3': 'green',
+    'default':'yellow'
+}
 
 const initialStops = {
     stops: {
@@ -24,16 +30,19 @@ const initialStops = {
         'driverRoute-1': {
             id: 'driverRoute-1',
             driverName: 'Frank',
+            color: markerStyles.style1,
             stopIds: ['stop-1', 'stop-2','stop-3','stop-4', 'stop-5']
         },
         'driverRoute-2': {
             id: 'driverRoute-2',
             driverName: 'Thomas',
+            color: markerStyles.style2,
             stopIds: []
         },
         'driverRoute-3': {
             id: 'driverRoute-3',
             driverName: 'Mary',
+            color: markerStyles.style3,
             stopIds: []
         },
     },
@@ -44,6 +53,7 @@ const initialStops = {
 
 const AllRoutes = (props) =>{
     let [routeStops, setRouteStops] = useState(initialStops)
+
     props.techStops(initialStops)
     const onDragStart =() => {
         document.body.style.color = 'orange'
@@ -59,7 +69,7 @@ const AllRoutes = (props) =>{
    const onDragEnd = result => {
        document.body.style.color = 'inherit';
        document.body.style.backgroundColor = 'inherit';
-
+    
        const { destination, source, draggableId } = result;
        
        if(!destination){
@@ -92,6 +102,7 @@ const AllRoutes = (props) =>{
                    [newDriverRoute.id]: newDriverRoute
                }
            }
+           
            setRouteStops(newState);
            props.techStops(newState)   
            return;         

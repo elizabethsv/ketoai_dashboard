@@ -1,38 +1,28 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useLayoutEffect} from 'react'
 import { Map, Marker, GoogleApiWrapper, Polyline} from 'google-maps-react';
 import './App.css'
 import CustomerInfo from './CustomerInfo'
+import { blue } from '@material-ui/core/colors';
 
 const API_KEY = ''
 
-
-//need to change 
 const mapStyles={
     width:'100%',
     border:'none'
 }
 
-//need to integrate this into dashboard. 
+
+
+
 
 export const RouteMap = (props) =>{
-   
-    //use geocoding for the addresses to convert it to lat/long?
-    // let [locations, setLocations]=useState([
-    //     {locationId: null, technicianId: null, latitude:29.794940, longitude:-95.569930}, 
-    //     {locationId: null, technicianId: null, latitude:29.784013, longitude:-95.651611},
-    //     {locationId: null, technicianId: null, latitude:29.832076, longitude:-95.550651},
-    //     {locationId: null, technicianId: null, latitude:30.132650, longitude:-95.462870}
-    // ])
-    
-
+    let mapRef = React.createRef()
     let [animation, setAnimation] = useState(null)
     let [routeInfo, setRouteInfo] = useState(props.routeinfo)
-    
-    console.log(routeInfo.stops['stop-1'].latitude)
-    
-
+    let [markers, setMarkers] =useState([])
     let [customerInfo, setCustomerInfo] = useState(null)
-    
+
+   
     
 
     //Need to add a close button to div 
@@ -40,30 +30,44 @@ export const RouteMap = (props) =>{
         if(marker.animation !== null){
             marker.setAnimation(null)
             setCustomerInfo(null)
+
             
         }else{
             marker.setAnimation(1)
             setCustomerInfo(true)
         }   
     }
-
-    //Need to change color depending on driver 
+ 
+    let newMarkers=[]
     const createMarkers=()=>{
-        let markers=[]
-        for(const[key,value] of Object.entries(routeInfo.stops)){
-            console.log(value.latitude)
-            markers.push(<Marker 
-                position={{ lat: value.latitude, lng: value.longitude }}
-                onClick={onMarkerClick}
-                animation={animation}/>
-            )
-        }
-        return markers
+        routeInfo.driverRouteOrder.map((routeid)=>{
+            const driverRoute = routeInfo.driverRoutes[routeid]
+            const stops = driverRoute.stopIds.map(stopId=> routeInfo.stops[stopId])
+            for(let i=0; i<stops.length; i++){
+                newMarkers.push(<Marker key={driverRoute.name}
+                    position={{lat: stops[i].latitude, lng: stops[i].longitude}}
+                    onClick={onMarkerClick}
+                    animation={animation}
+                    draggable={true}
+            icon={{url:`http://maps.google.com/mapfiles/ms/icons/${driverRoute.color}-dot.png`}}/>)
+            }
+        })
+
+        return newMarkers
+        
     }
+    useEffect(()=>{
+        createMarkers()
+        setMarkers([...markers, newMarkers])
+        console.log(markers)
+    },[])
+
+   
    
     return(
        <div className="container">
             <Map
+            ref={mapRef}
             google={props.google}
             zoom={8}
             style={mapStyles}
@@ -71,12 +75,8 @@ export const RouteMap = (props) =>{
             containerStyle={{width: '100%', height: '300px',position:'relative' }}
             disableDefaultUI={true}
             >
-                {/* <Polyline
-            path={line}
-            strokeColor="#0000FF"
-            strokeOpacity={0.8}
-            strokeWeight={2} /> */}
-            {createMarkers()}
+                
+            {markers}
            
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
