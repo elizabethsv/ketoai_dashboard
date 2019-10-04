@@ -52,17 +52,18 @@ export const RouteMap = (props) =>{
             icon={{url:`http://maps.google.com/mapfiles/ms/icons/${driverRoute.color}-dot.png`}}/>)
             }
         })
-
-        return newMarkers
         
     }
     useEffect(()=>{
         createMarkers()
-        setMarkers([...markers, newMarkers])
+        
         console.log(markers)
     },[])
 
-   
+   useEffect(()=>{
+        setMarkers([...markers, newMarkers])
+        console.log(markers)
+   },[routeInfo.driverRoutes])
    
     return(
        <div className="container">
