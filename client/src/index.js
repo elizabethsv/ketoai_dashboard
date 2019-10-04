@@ -6,7 +6,10 @@ import Dashboard from './components/Dashboard';
 import {Provider} from 'react-redux'
 import store from './store/index'
 
+import { changeRoutes } from "../src/actions/index";
 
+window.store = store;
+window.changeRoutes = changeRoutes;
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(

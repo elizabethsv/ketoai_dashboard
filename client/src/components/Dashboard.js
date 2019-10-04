@@ -217,7 +217,7 @@ export default function Dashboard() {
             {/* Map */}
             <Grid item xs={12}>
               
-                  <RouteMap routeinfo={routes}/>
+                  {/* <RouteMap routeinfo={routes}/> */}
               
             </Grid>
             {/* Customer Info */}

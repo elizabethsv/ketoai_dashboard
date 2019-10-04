@@ -1,4 +1,5 @@
-import React from 'react'
+
+import {CHANGE_ROUTE} from '../actions/consts'
 
 const initialStops = {
     stops: {
@@ -13,19 +14,19 @@ const initialStops = {
         'driverRoute-1': {
             id: 'driverRoute-1',
             driverName: 'Frank',
-            color: markerStyles.style1,
+            color: 'yellow',
             stopIds: ['stop-1', 'stop-2','stop-3','stop-4', 'stop-5']
         },
         'driverRoute-2': {
             id: 'driverRoute-2',
             driverName: 'Thomas',
-            color: markerStyles.style2,
+            color: 'green',
             stopIds: []
         },
         'driverRoute-3': {
             id: 'driverRoute-3',
             driverName: 'Mary',
-            color: markerStyles.style3,
+            color: 'blue',
             stopIds: []
         },
     },
@@ -36,10 +37,9 @@ const initialStops = {
 const routeReducer = (state=initialStops,action) =>{
     switch(action.type){
         case CHANGE_ROUTE:
-            return Object.assign({},state,{
-                routes: state.stops.concat(action.payload),
-            })
+            return Object.assign({},state,action.payload)
     }
+    console.log(state)
     return state
 }
 
