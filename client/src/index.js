@@ -7,10 +7,15 @@ import * as firebase from 'firebase';
 import firebaseConfig from './components/firebase/Firebase'
 import LoginRoutes from './components/routes/LoginRoutes'
 import ProtectedRoutes from './components/routes/ProtectedRoutes'
-
+import {Provider} from 'react-redux'
+import store from './store/index'
 import Header from './components/Header'
+import {changeRoutes} from '../src/actions/index'
 //checks if the user is logged in or not
 import ProtectedRouteHoc from './components/routes/ProtectedRouteHoc'
+
+window.store = store;
+window.changeRoutes = changeRoutes;
 
 firebase.initializeApp(firebaseConfig);
 export const AuthContext = React.createContext(null);
@@ -30,6 +35,7 @@ function App() {
 
 
     return (
+        <Provider store={store}>
         <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
             Is logged in? {JSON.stringify(isLoggedIn)}
             <div>
@@ -58,6 +64,7 @@ function App() {
                 </Router>
             </div>
         </AuthContext.Provider>
+        </Provider>
     )
 }
 
