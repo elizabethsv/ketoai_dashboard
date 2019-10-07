@@ -6,7 +6,16 @@ import {bool, any, object} from 'prop-types';
 //renders the guarded route
 const ProtectedRouteHoc = ({ component: Component, isLoggedIn, ...rest }) => {
 	if (isLoggedIn || rest.public) {
-        console.log('test')
+		return (
+			<Route
+				{...rest}
+				render={props => {
+					return <Component {...props}></Component>;
+				}}
+			/>
+		);
+	} else if (isLoggedIn === true){
+		console.log("test2")
 		return (
 			<Route
 				{...rest}
@@ -16,7 +25,7 @@ const ProtectedRouteHoc = ({ component: Component, isLoggedIn, ...rest }) => {
 			/>
 		);
 	}
-	return <Redirect to={{ pathname: '/' }} />;
+	return <Redirect to={{ pathname: '/login' }} />;
 };
 
 ProtectedRouteHoc.propTypes = {

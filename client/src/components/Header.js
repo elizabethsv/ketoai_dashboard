@@ -12,7 +12,7 @@ const Header = ({history}) => {
 
     const handleSignOut = () => {
         firebase.auth().signOut().then(res => {
-            history.push('/login')
+            window.location.assign('/login')
         })
         .catch(e => {
             setErrors(e.message)

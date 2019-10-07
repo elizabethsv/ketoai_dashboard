@@ -5,6 +5,10 @@ import CustomerInfo from './CustomerInfo'
 import { blue } from '@material-ui/core/colors';
 import {connect} from 'react-redux'
 import {changeRoutes} from '../actions/index'
+import Title from './Title';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+
 
 const API_KEY = ''
 
@@ -48,6 +52,9 @@ export const MapRoutes = (props) =>{
             marker.setAnimation(1)
             setCustomerInfo(true)
         }   
+    }
+    const onCloseClick=(props, e)=>{
+        setCustomerInfo(null)
     }
  
     let newMarkers=[]
@@ -95,7 +102,11 @@ export const MapRoutes = (props) =>{
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
-                <h3>Customer Information</h3>
+                <Title>Customer Information
+                    <IconButton size="small"><CloseIcon 
+                    onClick={()=> onCloseClick()}
+                    /></IconButton>
+                </Title>
                 <div className="customer-info">
                     <CustomerInfo />
                 </div>

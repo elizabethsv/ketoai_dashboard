@@ -137,7 +137,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     overflow: 'hidden',
     flexDirection: 'column',
-  },
+  }, 
   fixedHeight: {
     height: 400,
     overflow:'hidden'
