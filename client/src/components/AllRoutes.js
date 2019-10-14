@@ -80,7 +80,7 @@ const AllRoutes = (props) =>{
     const onDragUpdate = update => {
         const {destination} = update; 
         const opacity = destination ? destination.index / Object.keys(props.routes.stops).length : 0;
-        document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`
+        document.body.style.backgroundColor = `rgba(245, 248, 250, ${opacity})`
         }
 
    const onDragEnd = result => {

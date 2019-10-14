@@ -24,4 +24,25 @@
 .customer-info{
   background-color:white;
   height:100%;
+  display:flex;
+  flex-direction: column;
+}
+
+
+#customer-title{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding-right:3px;
+}
+
+#close-btn{
+  font-weight: 500;
+  font-size: 1.2em;
+  cursor:pointer;
+  align-self: flex-start;
+}
+
+#close-btn:hover{
+  font-weight: 900
 }

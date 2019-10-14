@@ -80,11 +80,11 @@ export const MapTest = (props) =>{
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
-                <Title>Customer Information
-                <CloseIcon 
+                <h3>Customer Information</h3>
+                <span
                 onClick={()=> onCloseClick()}
-                />
-                </Title>
+                >&#10005;</span>
+                
                 <div className="customer-info">
                     <CustomerInfo />
                 </div>

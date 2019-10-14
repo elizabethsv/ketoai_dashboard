@@ -14,23 +14,24 @@ const useStyles = makeStyles(theme => ({
 
 const Container = styled.div`
     margin: 8px;
-    border: 1px solid lightgrey;
+    // border: 1px solid lightgrey;
     border-radius: 2px;
     width: fit-content;
-    min-width: 800px;
+    width: 1000px;
     display: flex;
     flex-direction: row;
     `;
 const DriverName = styled.h3`
     padding: 8px;
-    min-width: 100px
+    min-width: 100px;
 `;
 const StopsList = styled.div`
     padding: 8px;
     transition: background-color 0.2s ease;
-    background-color: ${props => (props.isDraggingOver ? '#02a1e2' : 'white')}
+    background-color: ${props => (props.isDraggingOver ? '#e9f3f7' : 'white')}
     display: flex;
-    min-width: 700px
+    min-width: 100%;
+    border-bottom: 1px solid lightgrey;
 `;
 
 export default class DriverRoute extends React.Component {
