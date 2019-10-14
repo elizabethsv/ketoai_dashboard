@@ -5,10 +5,6 @@ import CustomerInfo from './CustomerInfo'
 import { blue } from '@material-ui/core/colors';
 import {connect} from 'react-redux'
 import {changeRoutes} from '../actions/index'
-import Title from './Title';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-
 
 const API_KEY = ''
 
@@ -34,7 +30,6 @@ const mapStateToProps=state=>{
 export const MapRoutes = (props) =>{
     let mapRef = React.createRef()
     let [animation, setAnimation] = useState(null)
-    // let [routeInfo, setRouteInfo] = useState(props.routeinfo)
     let [markers, setMarkers] =useState([])
     let [customerInfo, setCustomerInfo] = useState(null)
 
@@ -53,9 +48,6 @@ export const MapRoutes = (props) =>{
             setCustomerInfo(true)
         }   
     }
-    const onCloseClick=(props, e)=>{
-        setCustomerInfo(null)
-    }
  
     let newMarkers=[]
     const createMarkers=()=>{
@@ -73,17 +65,21 @@ export const MapRoutes = (props) =>{
         })
         
     }
-    // useEffect(()=>{
-    //     createMarkers()
-        
-    //     console.log(markers)
-    // },[])
+    
+
 
    useEffect(()=>{
         createMarkers()
         setMarkers(newMarkers)
         console.log(markers)
    },[props.routes])
+
+   const onCloseClick=(props, e,marker)=>{
+    setCustomerInfo(null)
+
+    
+}
+
    
     return(
        <div className="container">
@@ -102,11 +98,12 @@ export const MapRoutes = (props) =>{
             </Map>
             <div className={!customerInfo ? 'customer-div' : 'display-customer-info'}>
          
-                <Title>Customer Information
-                    <IconButton size="small"><CloseIcon 
-                    onClick={()=> onCloseClick()}
-                    /></IconButton>
-                </Title>
+                <div id='customer-title'><h3>Customer Information</h3>
+                <span
+                id="close-btn"
+                onClick={()=> onCloseClick()}
+                >&#10005;</span>
+                </div>
                 <div className="customer-info">
                     <CustomerInfo />
                 </div>

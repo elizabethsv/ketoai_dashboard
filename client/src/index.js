@@ -13,7 +13,7 @@ import Header from './components/Header'
 import {changeRoutes} from '../src/actions/index'
 //checks if the user is logged in or not
 import ProtectedRouteHoc from './components/routes/ProtectedRouteHoc'
-
+import Dashboard from './components/Dashboard'
 window.store = store;
 window.changeRoutes = changeRoutes;
 
@@ -37,7 +37,8 @@ function App() {
 
     return (
         <Provider store={store}>
-        <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
+            <Dashboard/>
+        {/* <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
             Is logged in? {JSON.stringify(isLoggedIn)}
             <div>
                 <Router>
@@ -64,7 +65,7 @@ function App() {
                     </Switch>
                 </Router>
             </div>
-        </AuthContext.Provider>
+        </AuthContext.Provider> */}
         </Provider>
     )
 }
